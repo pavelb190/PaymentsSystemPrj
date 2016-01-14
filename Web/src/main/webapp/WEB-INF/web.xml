@@ -1,0 +1,37 @@
+<!DOCTYPE web-app PUBLIC
+ "-//Sun Microsystems, Inc.//DTD Web Application 2.3//EN"
+ "http://java.sun.com/dtd/web-app_2_3.dtd" >
+
+<web-app>
+  <display-name>Archetype Created Web Application</display-name>
+  <filter>
+  	<filter-name>RequestDispatcher</filter-name>
+  	<display-name>Request Dispatcher</display-name>
+  	<description></description>
+  	<filter-class>by.it.academy.my.web.filter.RequestDispatcher</filter-class>
+  </filter>
+  <filter>
+  	<filter-name>AuthFilter</filter-name>
+  	<display-name>AuthFilter</display-name>
+  	<description></description>
+  	<filter-class>by.it.academy.my.web.filter.AuthFilter</filter-class>
+  </filter>
+  <filter-mapping>
+  	<filter-name>RequestDispatcher</filter-name>
+  	<url-pattern>/*</url-pattern>
+  </filter-mapping>
+  <filter-mapping>
+  	<filter-name>AuthFilter</filter-name>
+  	<servlet-name>FrontController</servlet-name>
+  </filter-mapping>
+  <servlet>
+  	<servlet-name>FrontController</servlet-name>
+  	<display-name>Front Controller</display-name>
+  	<description>Front controller for all incoming requests.</description>
+  	<servlet-class>by.it.academy.my.web.servlet.FrontController</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>FrontController</servlet-name>
+  	<url-pattern>/pages/*</url-pattern>
+  </servlet-mapping>
+</web-app>
