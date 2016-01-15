@@ -3,20 +3,47 @@ package by.it.academy.my.web.action.application;
 import java.util.HashMap;
 
 import by.it.academy.my.entity.application.User;
-import by.it.academy.my.service.UserService;
+import by.it.academy.my.service.application.UserService;
+import by.it.academy.my.service.exception.ServiceException;
 import by.it.academy.my.web.action.WebAction;
+import by.it.academy.my.web.action.exception.ActionException;
 
 public class LoginAction extends WebAction {
 	
-	UserService userService = new UserService();
+	UserService userService;
+	
+	public LoginAction() throws ActionException {
+		
+		try {
+			
+			this.userService = new UserService();
+			
+		} catch (ServiceException e) {
+			
+			e.printStackTrace();
+			
+			throw new ActionException(e.getMessage());
+		}
+	}
 	
 	@Override
-	protected String doAction() {
+	protected String doAction() throws ActionException {
 		
 		final String login = (String) getActionParam("login");
 		final String pass = (String) getActionParam("pswd");
 		
-		User user = userService.getUserById(1);
+		User user = null;
+		
+		try {
+			
+			user = userService.getUserById(1);
+			
+		} catch (ServiceException e) {
+			
+			e.printStackTrace();
+			
+			throw new ActionException(e.getMessage());
+		}
 		
 		/*
 		if (!user.checkPassword(pass)) {
