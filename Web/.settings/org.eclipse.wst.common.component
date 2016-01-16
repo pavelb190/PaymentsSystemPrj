@@ -5,13 +5,16 @@
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/java"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/resources"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src/main/webapp"/>
-        <dependent-module archiveName="Services-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Services/Services">
+        <dependent-module archiveName="Domain-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Domain/Domain">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <dependent-module archiveName="Dao-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Dao/Dao">
             <dependency-type>uses</dependency-type>
         </dependent-module>
-        <dependent-module archiveName="Entities-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Entities/Entities">
+        <dependent-module archiveName="Model-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Model/Model">
+            <dependency-type>uses</dependency-type>
+        </dependent-module>
+        <dependent-module archiveName="Dal-1.0-SNAPSHOT.jar" deploy-path="/WEB-INF/lib" handle="module:/resource/Dal/Dal">
             <dependency-type>uses</dependency-type>
         </dependent-module>
         <property name="java-output-path" value="/Web/target/classes"/>

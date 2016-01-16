@@ -2,7 +2,7 @@ package by.it.academy.my.web.action.application;
 
 import java.util.HashMap;
 
-import by.it.academy.my.entity.application.User;
+import by.it.academy.my.model.entity.application.User;
 import by.it.academy.my.service.application.UserService;
 import by.it.academy.my.service.exception.ServiceException;
 import by.it.academy.my.web.action.WebAction;

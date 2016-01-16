@@ -8,7 +8,7 @@
     <version>1.0-SNAPSHOT</version>
   </parent>
   <groupId>by.it.academy.my</groupId>
-  <artifactId>Services</artifactId>
+  <artifactId>Domain</artifactId>
   <version>1.0-SNAPSHOT</version>
   <name>Services</name>
   <packaging>jar</packaging>

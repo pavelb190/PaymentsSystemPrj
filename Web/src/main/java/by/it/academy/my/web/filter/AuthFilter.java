@@ -11,7 +11,7 @@ import javax.servlet.ServletResponse;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import by.it.academy.my.entity.application.User;
+import by.it.academy.my.model.entity.application.User;
 
 /**
  * Servlet Filter implementation class AuthFilter

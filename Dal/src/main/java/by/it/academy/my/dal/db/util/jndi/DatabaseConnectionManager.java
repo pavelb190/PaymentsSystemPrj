@@ -1,4 +1,4 @@
-package by.it.academy.my.dao.db.util.jndi;
+package by.it.academy.my.dal.db.util.jndi;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -8,20 +8,21 @@ import javax.naming.InitialContext;
 import javax.naming.NamingException;
 import javax.sql.DataSource;
 
-import by.it.academy.my.dao.exception.PersistenceException;
+import by.it.academy.my.dal.db.manager.DBConnectionManager;
 
-public final class DatabaseConnectionManager {
+
+public final class DatabaseConnectionManager implements DBConnectionManager {
 	
 	private static DatabaseConnectionManager dbConnectionManager = null;
 	
 	private DataSource dataSource;
 	
-	private DatabaseConnectionManager(final String dbName) throws PersistenceException {
+	private DatabaseConnectionManager(final String dbName) throws NamingException {
 		
 		this.dataSource = buildDataSource(dbName);
 	}
 	
-	public static DatabaseConnectionManager getInstance() throws PersistenceException {
+	public static DatabaseConnectionManager getInstance() throws NamingException {
 		
 		if (dbConnectionManager == null) {
 			
@@ -34,7 +35,7 @@ public final class DatabaseConnectionManager {
 		return dbConnectionManager;
 	}
 	
-	public Connection getConnection() throws PersistenceException {
+	public Connection getConnection() throws SQLException {
 		
 		Connection connection = null;
 		
@@ -46,13 +47,13 @@ public final class DatabaseConnectionManager {
 			
 			e.printStackTrace();
 			
-			throw new PersistenceException("Couldn't get the connection from DataSource!");
+			//throw new PersistenceException("Couldn't get the connection from DataSource!");
 		}
 		
 		return connection;
 	}
 	
-	private static final DataSource buildDataSource(final String dbName) throws PersistenceException {
+	private static final DataSource buildDataSource(final String dbName) throws NamingException {
 		
 		DataSource dataSource = null;
 		
@@ -66,7 +67,7 @@ public final class DatabaseConnectionManager {
 			
 			e.printStackTrace();
 			
-			throw new PersistenceException(e.getMessage());
+			throw e;
 		}
 		
 		return dataSource;

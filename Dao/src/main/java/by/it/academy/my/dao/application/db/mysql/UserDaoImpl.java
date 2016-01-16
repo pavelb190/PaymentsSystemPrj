@@ -6,7 +6,7 @@ import java.sql.SQLException;
 import by.it.academy.my.dao.application.UserDao;
 import by.it.academy.my.dao.db.AbstractDatabaseDaoImpl;
 import by.it.academy.my.dao.exception.PersistenceException;
-import by.it.academy.my.entity.application.User;
+import by.it.academy.my.model.entity.application.User;
 
 public class UserDaoImpl extends AbstractDatabaseDaoImpl<User, Long> implements UserDao {
 	

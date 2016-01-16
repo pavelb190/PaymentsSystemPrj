@@ -24,6 +24,7 @@
   </dependencies>
   <modules>
 	<module>Entities</module>
+	<module>Dal</module>
     <module>Dao</module>
     <module>Services</module>
 	<module>Web</module>

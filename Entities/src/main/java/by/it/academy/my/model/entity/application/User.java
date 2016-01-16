@@ -1,6 +1,6 @@
-package by.it.academy.my.entity.application;
+package by.it.academy.my.model.entity.application;
 
-import by.it.academy.my.entity.Entity;
+import by.it.academy.my.model.entity.Entity;
 
 public class User extends Entity {
 	

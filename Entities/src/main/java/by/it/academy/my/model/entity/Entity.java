@@ -1,4 +1,4 @@
-package by.it.academy.my.entity;
+package by.it.academy.my.model.entity;
 
 public abstract class Entity {
 	

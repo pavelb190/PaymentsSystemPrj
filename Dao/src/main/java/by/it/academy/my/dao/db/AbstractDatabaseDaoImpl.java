@@ -10,7 +10,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import by.it.academy.my.dao.GenericDao;
-import by.it.academy.my.entity.Entity;
+import by.it.academy.my.model.entity.Entity;
 
 public abstract class AbstractDatabaseDaoImpl<T extends Entity, PK extends Serializable> implements GenericDao<T, PK> {
 	

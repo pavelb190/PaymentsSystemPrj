@@ -1,12 +1,13 @@
 package by.it.academy.my.service.application;
 
 import java.sql.Connection;
+import java.sql.SQLException;
 
+import by.it.academy.my.dal.db.util.jndi.DatabaseConnectionManager;
 import by.it.academy.my.dao.application.UserDao;
 import by.it.academy.my.dao.application.db.mysql.UserDaoImpl;
-import by.it.academy.my.dao.db.util.jndi.DatabaseConnectionManager;
 import by.it.academy.my.dao.exception.PersistenceException;
-import by.it.academy.my.entity.application.User;
+import by.it.academy.my.model.entity.application.User;
 import by.it.academy.my.service.exception.ServiceException;
 
 public class UserService {
@@ -15,6 +16,7 @@ public class UserService {
 	
 	public UserService() throws ServiceException {
 		
+		/*
 		try {
 			
 			this.dbConnectionManager = DatabaseConnectionManager.getInstance();
@@ -25,6 +27,7 @@ public class UserService {
 			
 			throw new ServiceException(e.getMessage());
 		}
+		*/
 	}
 	
 	public User getUserById(long id) throws ServiceException {
@@ -39,11 +42,15 @@ public class UserService {
 			
 			user = userDao.get(id);
 			
-		} catch (PersistenceException e) {
+		} catch (SQLException e) {
 			
 			e.printStackTrace();
 			
 			throw new ServiceException(e.getMessage());
+			
+		} catch (PersistenceException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 		
 		return user;

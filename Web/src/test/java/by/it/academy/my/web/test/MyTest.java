@@ -2,18 +2,25 @@ package by.it.academy.my.web.test;
 
 import static org.junit.Assert.assertEquals;
 
+import javax.naming.Context;
+import javax.naming.InitialContext;
+import javax.naming.NamingException;
+
+import org.junit.Ignore;
 import org.junit.Test;
 
-import by.it.academy.my.dao.db.util.jndi.DatabaseConnectionManager;
 import by.it.academy.my.web.action.application.ApplicationActions;
 
 public class MyTest {
 	
+	@Ignore
 	@Test
-	public void testSomeCondition() {
+	public void testSomeCondition() throws NamingException {
 		
-		System.out.println("Action URI: " + ApplicationActions.LOGIN.getUri());
+		InitialContext initCtxt = new InitialContext();
 		
-		assertEquals( "Web Test Completed!", 1, 1 );
+		Context envCtxt = (Context) initCtxt.lookup("java:comp/env");
+		
+		System.out.println("EnvContext: " + envCtxt);
 	}
 }
