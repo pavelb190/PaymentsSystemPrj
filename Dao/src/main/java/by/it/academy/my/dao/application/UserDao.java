@@ -5,5 +5,5 @@ import by.it.academy.my.model.entity.application.User;
 
 public interface UserDao extends GenericDao<User, Long> {
 	
-	public User getByLogin(String login);
+	// ...
 }

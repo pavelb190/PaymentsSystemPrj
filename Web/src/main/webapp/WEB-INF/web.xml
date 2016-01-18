@@ -3,7 +3,7 @@
  "http://java.sun.com/dtd/web-app_2_3.dtd" >
 
 <web-app>
-  <display-name>Archetype Created Web Application</display-name>
+  <display-name>Payments System Web Application</display-name>
   <filter>
   	<filter-name>RequestDispatcher</filter-name>
   	<display-name>Request Dispatcher</display-name>
@@ -30,11 +30,33 @@
   	<description>Front controller for all incoming requests.</description>
   	<servlet-class>by.it.academy.my.web.servlet.FrontController</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>MyTestServlet</servlet-name>
+  	<display-name>MyTestServlet</display-name>
+  	<description></description>
+  	<servlet-class>by.it.academy.my.web.servlet.MyTestServlet</servlet-class>
+  </servlet>
   <servlet-mapping>
   	<servlet-name>FrontController</servlet-name>
   	<url-pattern>/pages/*</url-pattern>
   </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>MyTestServlet</servlet-name>
+  	<url-pattern>/test</url-pattern>
+  </servlet-mapping>
   
+  <!--
+  <servlet>
+  	<servlet-name>MyTestServlet</servlet-name>
+  	<display-name>MyTestServlet</display-name>
+  	<description></description>
+  	<servlet-class>by.it.academy.my.web.servlet.MyTestServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+  	<servlet-name>MyTestServlet</servlet-name>
+  	<url-pattern>/test</url-pattern>
+  </servlet-mapping>
+  -->
   <resource-ref>
   	<description>MySQL DB Connection Pool</description>
   	<res-ref-name>jdbc/DB_Payments</res-ref-name>

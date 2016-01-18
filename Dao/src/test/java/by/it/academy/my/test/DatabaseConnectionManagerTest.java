@@ -9,7 +9,7 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 import by.it.academy.my.dal.db.util.jndi.DatabaseConnectionManager;
-import by.it.academy.my.dao.exception.PersistenceException;
+import by.it.academy.my.dao.exception.DaoException;
 
 public class DatabaseConnectionManagerTest {
 	

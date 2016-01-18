@@ -10,6 +10,7 @@ import org.junit.Test;
 
 import by.it.academy.my.dal.db.manager.DBConnectionManager;
 import by.it.academy.my.dal.db.util.jolbox.DatabaseConnectionManager;
+import by.it.academy.my.dal.exception.DalException;
 
 import com.jolbox.bonecp.BoneCP;
 import com.jolbox.bonecp.BoneCPConfig;
@@ -67,7 +68,7 @@ public class MyTest {
 	}
 	
 	@Test
-	public void testDBConnectionManagerInstantiating() throws SQLException {
+	public void testDBConnectionManagerInstantiating() throws DalException {
 		
 		DBConnectionManager dbConnMngr = DatabaseConnectionManager.getInstance();
 		

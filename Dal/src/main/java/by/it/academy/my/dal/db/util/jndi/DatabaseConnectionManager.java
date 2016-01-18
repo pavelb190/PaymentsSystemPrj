@@ -9,6 +9,7 @@ import javax.naming.NamingException;
 import javax.sql.DataSource;
 
 import by.it.academy.my.dal.db.manager.DBConnectionManager;
+import by.it.academy.my.dal.exception.DalException;
 
 
 public final class DatabaseConnectionManager implements DBConnectionManager {
@@ -17,12 +18,12 @@ public final class DatabaseConnectionManager implements DBConnectionManager {
 	
 	private DataSource dataSource;
 	
-	private DatabaseConnectionManager(final String dbName) throws NamingException {
+	private DatabaseConnectionManager(final String dbName) throws DalException {
 		
 		this.dataSource = buildDataSource(dbName);
 	}
 	
-	public static DatabaseConnectionManager getInstance() throws NamingException {
+	public static DatabaseConnectionManager getInstance() throws DalException {
 		
 		if (dbConnectionManager == null) {
 			
@@ -35,7 +36,7 @@ public final class DatabaseConnectionManager implements DBConnectionManager {
 		return dbConnectionManager;
 	}
 	
-	public Connection getConnection() throws SQLException {
+	public Connection getConnection() throws DalException {
 		
 		Connection connection = null;
 		
@@ -47,13 +48,13 @@ public final class DatabaseConnectionManager implements DBConnectionManager {
 			
 			e.printStackTrace();
 			
-			//throw new PersistenceException("Couldn't get the connection from DataSource!");
+			throw new DalException("Couldn't get the connection from DataSource!");
 		}
 		
 		return connection;
 	}
 	
-	private static final DataSource buildDataSource(final String dbName) throws NamingException {
+	private static final DataSource buildDataSource(final String dbName) throws DalException {
 		
 		DataSource dataSource = null;
 		
@@ -67,7 +68,7 @@ public final class DatabaseConnectionManager implements DBConnectionManager {
 			
 			e.printStackTrace();
 			
-			throw e;
+			throw new DalException(e.getMessage());
 		}
 		
 		return dataSource;
