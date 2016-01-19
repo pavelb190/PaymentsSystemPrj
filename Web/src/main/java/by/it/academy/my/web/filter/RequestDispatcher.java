@@ -40,27 +40,27 @@ public final class RequestDispatcher implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
-		System.out.println("In RequestDispatcher-filter!...");
+		System.out.println("In 'RequestDispatcher'-filter!...");
 		
 		HttpServletRequest req = (HttpServletRequest) request;
 		
-		log.debug("URL : " + req.getRequestURL());
-		
 		String path = req.getRequestURI().substring(req.getContextPath().length());
 		
-		log.debug("Path : " + path);
-		
 		if (path.startsWith("/assets") || path.startsWith("/pages")) {
+			
+			System.out.println("Continue the filter chain from 'RequestDispatcher'-filter!...");
 			
 			chain.doFilter(request, response);
 			
 		} else {
 			
-			HttpServletResponse res = (HttpServletResponse) response;
+			//HttpServletResponse res = (HttpServletResponse) response;
 			
-			res.sendRedirect("pages" + path);
+			//res.sendRedirect("pages" + path);
 			
-			//request.getRequestDispatcher("/pages" + path).forward(request, response);
+			System.out.println("Do the Forward from 'RequestDispatcher'-filter!...");
+			
+			request.getRequestDispatcher("/pages" + path).forward(request, response);
 		}
 	}
 

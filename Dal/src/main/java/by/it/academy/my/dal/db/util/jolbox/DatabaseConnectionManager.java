@@ -56,7 +56,7 @@ public class DatabaseConnectionManager implements DBConnectionManager {
 	
 	private static Properties getPropertiesFromClassPath() throws DalException {
 		
-		InputStream is = DatabaseConnectionManager.class.getClassLoader().getResourceAsStream("/" + CONFIG_FILENAME + ".properties");
+		InputStream is = DatabaseConnectionManager.class.getClassLoader().getResourceAsStream(CONFIG_FILENAME + ".properties");
 		
 		Properties props = new Properties();
 		
