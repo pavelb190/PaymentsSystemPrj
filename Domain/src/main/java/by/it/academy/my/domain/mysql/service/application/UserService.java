@@ -54,4 +54,18 @@ public class UserService {
 		
 		return user;
 	}
+	
+	public boolean checkUserPasswordById(final long id, final String password) throws ServiceException {
+		
+		User user = this.getUserById(id);
+		
+		return user != null && user.getPassword().equals(password);
+	}
+	
+	public boolean checkUserPassword(User user, final String password) {
+		
+		// ...
+		
+		return user.getPassword().equals(password);
+	}
 }

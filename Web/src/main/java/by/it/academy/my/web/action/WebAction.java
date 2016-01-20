@@ -6,6 +6,9 @@ import java.util.Map;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import by.it.academy.my.web.action.command.Command;
+import by.it.academy.my.web.action.exception.ActionException;
+
 
 public abstract class WebAction implements Command {
 	
@@ -34,7 +37,7 @@ public abstract class WebAction implements Command {
 		this.actionView = doAction();
 	}
 	
-	protected abstract String doAction() throws Exception;
+	protected abstract String doAction() throws ActionException;
 	
 	public void setActionParams(Map<String, Object> actionParams) {
 		

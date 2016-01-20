@@ -7,11 +7,11 @@
 <title>App Login Form&copy;</title>
 </head>
 <body>
-	<form action="?controller=login" method="POST">
+	<form action="?command=login" method="POST">
 		<table border="1">
 			<tr>
-				<td>User: </td>
-				<td><input type="text" name="login" /></td>
+				<td>UserID: </td>
+				<td><input type="text" name="userId" /></td>
 			</tr>
 			<tr>
 				<td>Password: </td>

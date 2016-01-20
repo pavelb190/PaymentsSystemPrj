@@ -29,14 +29,46 @@ public class LoginAction extends WebAction {
 	@Override
 	protected String doAction() throws ActionException {
 		
-		final String login = (String) getActionParam("login");
-		final String pass = (String) getActionParam("pswd");
+		final String userId = (String) getActionParam("userId");
+		final String password = (String) getActionParam("pswd");
+		
+		System.out.println("UserId: " + userId + ", password: " + password);
 		
 		User user = null;
 		
 		try {
 			
-			user = userService.getUserById(1);
+			user = userService.getUserById(Long.parseLong(userId));
+			
+			if (user != null) {
+				
+				boolean userChecked = userService.checkUserPassword(user, password);
+				
+				if (userChecked) {
+					
+					HashMap<String, Object> session = new HashMap<String, Object>();
+					
+					session.put("user", user);
+					
+					this.setSessionParams(session);
+					
+					HashMap<String, Object> viewModel = new HashMap<String, Object>();
+					
+					viewModel.put("user", user);
+					viewModel.put("test", "TEST");
+					viewModel.put("aaa", "BBB");
+					
+					this.setViewParams(viewModel);
+					
+				} else {
+					
+					throw new ActionException("User's password Mismatch!");
+				}
+				
+			} else {
+				
+				throw new ActionException("User with id '" + userId + "' not Found!");
+			}
 			
 		} catch (ServiceException e) {
 			
@@ -44,29 +76,6 @@ public class LoginAction extends WebAction {
 			
 			throw new ActionException(e.getMessage());
 		}
-		
-		/*
-		if (!user.checkPassword(pass)) {
-			
-			throw new Exception("Passowrd mismatch!");
-		}
-		*/
-		
-		HashMap<String, Object> session = new HashMap<String, Object>();
-		
-		session.put("user", user);
-		
-		this.setSessionParams(session);
-		
-		HashMap<String, Object> viewModel = new HashMap<String, Object>();
-		
-		viewModel.put("user", user);
-		viewModel.put("test", "TEST");
-		viewModel.put("aaa", "BBB");
-		
-		this.setViewParams(viewModel);
-		
-		log.debug("[LoginAction triggered!]");
 		
 		return "index";
 	}

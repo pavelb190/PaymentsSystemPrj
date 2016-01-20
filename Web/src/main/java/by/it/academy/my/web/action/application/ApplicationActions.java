@@ -8,13 +8,16 @@ import by.it.academy.my.web.action.request.RequestTypes;
 public enum ApplicationActions {
 	
 	LOGIN_FORM(
-		"login/form", RequestTypes.GET, LoginFormAction.class
+		"loginForm", RequestTypes.GET, LoginFormAction.class
 	),
 	LOGIN(
 		"login", RequestTypes.POST, LoginAction.class
 	),
 	INDEX(
-		"", RequestTypes.GET, IndexAction.class
+		"index", RequestTypes.GET, IndexAction.class
+	),
+	DEFAULT(
+		"default", RequestTypes.GET, DefaultAction.class
 	),
 	ERROR(
 		"error", RequestTypes.GET, ErrorAction.class
@@ -23,15 +26,15 @@ public enum ApplicationActions {
 		"logout", RequestTypes.GET, LogoutAction.class
 	);
 	
-	private String uri;
+	private String command;
 	
 	WebAction action;
 	
 	private RequestTypes requestType;
 	
-	ApplicationActions(final String uri, RequestTypes requestType, Class<? extends WebAction> action) {
+	ApplicationActions(final String command, RequestTypes requestType, Class<? extends WebAction> action) {
 		
-		this.uri = uri;
+		this.command = command;
 		
 		this.requestType = requestType;
 		
@@ -56,9 +59,9 @@ public enum ApplicationActions {
 		}
 	}
 	
-	public String getUri() {
+	public String getCommand() {
 		
-		return this.uri;
+		return this.command;
 	}
 	
 	public WebAction getCurrentAction() {

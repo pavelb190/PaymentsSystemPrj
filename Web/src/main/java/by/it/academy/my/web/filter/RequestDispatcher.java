@@ -40,17 +40,13 @@ public final class RequestDispatcher implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
-		System.out.println("In 'RequestDispatcher'-filter!...");
-		
 		HttpServletRequest req = (HttpServletRequest) request;
 		
 		String path = req.getRequestURI().substring(req.getContextPath().length());
 		
 		if (path.startsWith("/assets") || path.startsWith("/pages")) {
 			
-			System.out.println("Continue the filter chain from 'RequestDispatcher'-filter!...");
-			
-			chain.doFilter(request, response);
+			chain.doFilter(req, response);
 			
 		} else {
 			
@@ -58,9 +54,9 @@ public final class RequestDispatcher implements Filter {
 			
 			//res.sendRedirect("pages" + path);
 			
-			System.out.println("Do the Forward from 'RequestDispatcher'-filter!...");
+			request.getRequestDispatcher("/pages" + path).forward(req, response);
 			
-			request.getRequestDispatcher("/pages" + path).forward(request, response);
+			//chain.doFilter(req, response);
 		}
 	}
 

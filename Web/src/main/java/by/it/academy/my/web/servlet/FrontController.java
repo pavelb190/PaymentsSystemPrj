@@ -11,6 +11,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import by.it.academy.my.web.action.request.handler.application.ApplicationRequestHandler;
+import by.it.academy.my.web.action.request.handler.application.ApplicationRequestHandlerCommand;
 
 /**
  * Servlet implementation class FrontController
@@ -35,9 +36,7 @@ public class FrontController extends HttpServlet {
 	 */
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		log.debug("[On Controller's Service-method!..");
-		
-		new ApplicationRequestHandler(request, response).perform();
+		new ApplicationRequestHandlerCommand(request, response).perform();
 	}
 	
 }

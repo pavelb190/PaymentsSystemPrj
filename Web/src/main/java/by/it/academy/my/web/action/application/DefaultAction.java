@@ -3,14 +3,14 @@ package by.it.academy.my.web.action.application;
 import by.it.academy.my.web.action.WebAction;
 import by.it.academy.my.web.action.exception.ActionException;
 
-public class ErrorAction extends WebAction {
+public class DefaultAction extends WebAction {
 
 	@Override
 	protected String doAction() throws ActionException {
 		
-		log.debug("[ErrorAction is triggered!]");
+		System.out.println("In Default-action!..");
 		
-		return "error";
+		return "index";
 	}
 
 }

@@ -47,6 +47,7 @@ public class ApplicationRequestHandler implements RequestHandler {
 		
 		System.out.println("Request URI : " + this.requestUri);
 		
+		/*
 		for(ApplicationActions currAction : ApplicationActions.values()) {
 			
 			if (currAction.getUri().equals(requestUri) && currAction.getRequestType().name().equals(req.getMethod())) {
@@ -54,6 +55,7 @@ public class ApplicationRequestHandler implements RequestHandler {
 				action = currAction.getCurrentAction();
 			}
 		}
+		*/
 		
 		if (action != null) {
 			

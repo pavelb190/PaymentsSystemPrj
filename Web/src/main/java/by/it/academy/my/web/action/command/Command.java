@@ -1,4 +1,4 @@
-package by.it.academy.my.web.action;
+package by.it.academy.my.web.action.command;
 
 public interface Command {
 	
