@@ -21,6 +21,8 @@ public class ApplicationRequestHandlerCommand implements RequestHandler {
 
 	private HttpServletRequest request;
 	
+	private String forCommand;
+	
 	private WebAction action = null;
 	
 	private RequestParamsWrapper<String> requestParams;
@@ -35,13 +37,31 @@ public class ApplicationRequestHandlerCommand implements RequestHandler {
 		
 		this.request = req;
 		
-		this.actionResolver = HttpRequestActionResolver.getInstance();
-		
-		this.action = this.actionResolver.resolve(req);
-		
 		this.requestParams = new HttpRequestParamsResolver(req).resolve();
 		
-		this.action.getActionParams().putAll(this.requestParams.getInputParams());
+		this.actionResolver = HttpRequestActionResolver.getInstance();
+		
+		try {
+			
+			this.action = this.actionResolver.resolve(req);
+			
+			try {
+				
+				this.action.getActionParams().putAll(this.requestParams.getInputParams());
+				
+			} catch (NullPointerException e) {
+				
+				e.printStackTrace();
+				
+				// ...
+			}
+			
+		} catch (ActionIsNotExistsException e) {
+			
+			e.printStackTrace();
+			
+			this.forCommand = e.getForCommand();
+		}
 		
 		this.response = res;
 	}
@@ -69,7 +89,7 @@ public class ApplicationRequestHandlerCommand implements RequestHandler {
 				
 			} else {
 				
-				throw new ActionIsNotExistsException();
+				throw new ActionIsNotExistsException("Couldn't find the Action for command '" + this.forCommand + "'!");
 			}
 			
 		} catch (Throwable e) {
