@@ -13,6 +13,9 @@ public enum ApplicationActions {
 	LOGIN(
 		"login", RequestTypes.POST, LoginAction.class
 	),
+	TEST(
+		"test", RequestTypes.GET, TestAction.class
+	),
 	INDEX(
 		"index", RequestTypes.GET, IndexAction.class
 	),

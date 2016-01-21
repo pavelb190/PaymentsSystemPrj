@@ -37,47 +37,55 @@ public final class AuthFilter implements Filter {
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		
+		// Make a HttpServletRequest from incoming request ...
 		HttpServletRequest req = (HttpServletRequest) request;
 		
+		/**
+		 * User is considered as logged in
+		 * 	if his bean with label "user" is presented and stored in HttpSession.
+		 */
+		
+		// Get a User-bean from session by its id-label ...
 		User user = (User) req.getSession().getAttribute("user");
 		
+		// If User is already logged in ...
+		// ... & incoming request doesn't represent the command "loginForm" (which means 'show LoginForm')...
 		if (user != null && !"loginForm".equals(req.getParameter("command"))) {
 			
+			// ... continue the workflow. 
 			chain.doFilter(req, response);
 			
-		} else if (user != null && "loginForm".equals(req.getParameter("command"))) {
+		} else
 			
-			request.getRequestDispatcher("?command=default").forward(req, response);
+			// If User is already logged in ...
+			// ... & incoming request represents the command "loginForm" (*)...
+			if (user != null && "loginForm".equals(req.getParameter("command"))) {
+				
+				/* Make redirect to the default action ... ;) */
+				
+				HttpServletResponse res = (HttpServletResponse) response;
+				
+				res.sendRedirect("?command=default");
+				
+				//request.getRequestDispatcher("?command=default").forward(req, response);
 			
-			//chain.doFilter(req, response);
+		} else
+			
+			// If User is not logged in yet ...
+			// ... & incoming request doesn't represent any command of "login" (it's a Login-process action) || "loginForm" (*) ...
+			if (user == null && !"login".equals(req.getParameter("command")) && !"loginForm".equals(req.getParameter("command"))) {
+				
+				/* Make redirect to the LoginForm (via a LoginFormAction). */
+				
+				HttpServletResponse res = (HttpServletResponse) response;
+				
+				res.sendRedirect("?command=loginForm");
 			
 		} else {
 			
-			HttpServletResponse res = (HttpServletResponse) response;
-			
-			res.sendRedirect("?command=loginForm");
-		}
-		
-		/*
-		if (user != null && !"loginForm".equals(req.getParameter("command"))) {
-			
-			chain.doFilter(req, response);
-			
-		} else if (null == req.getParameter("command")) {
-			
-			HttpServletResponse res = (HttpServletResponse) response;
-			
-			res.sendRedirect("?command=loginForm");
-			
-			// This code will execute after redirecting!...
-			
-			//request.getRequestDispatcher("/pages/?command=loginForm").forward(request, response);
-			
-		} else {
-			
+			// Else, do everything else.
 			chain.doFilter(req, response);
 		}
-		*/
 	}
 
 	/**

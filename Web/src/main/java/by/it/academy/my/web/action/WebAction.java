@@ -3,6 +3,8 @@ package by.it.academy.my.web.action;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpSession;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -13,6 +15,8 @@ import by.it.academy.my.web.action.exception.ActionException;
 public abstract class WebAction implements Command {
 	
 	protected static final Logger log = LogManager.getLogger(WebAction.class);
+	
+	private HttpSession session;
 	
 	private String actionView;
 	
@@ -38,6 +42,16 @@ public abstract class WebAction implements Command {
 	}
 	
 	protected abstract String doAction() throws ActionException;
+	
+	public void setSession(final HttpSession session) {
+		
+		this.session = session;
+	}
+	
+	public HttpSession getSession() {
+		
+		return this.session;
+	}
 	
 	public void setActionParams(Map<String, Object> actionParams) {
 		

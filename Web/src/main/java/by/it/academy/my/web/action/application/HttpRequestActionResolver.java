@@ -38,6 +38,8 @@ public class HttpRequestActionResolver implements WebActionResolver {
 			action = ApplicationActionsFactory.getActionByCommand(COMMAND_DEFAULT, RequestTypes.GET);
 		}
 		
+		action.setSession(req.getSession());
+		
 		return action;
 	}
 

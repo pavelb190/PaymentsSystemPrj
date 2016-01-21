@@ -3,16 +3,16 @@ package by.it.academy.my.web.action.application;
 import by.it.academy.my.web.action.WebAction;
 import by.it.academy.my.web.action.exception.ActionException;
 
-public class LogoutAction extends WebAction {
+public class TestAction extends WebAction {
 
 	@Override
 	protected String doAction() throws ActionException {
 		
-		System.out.println("[LogoutAction is triggered!]");
+		System.out.println("[In TestAction#doAction-method!..]");
 		
-		this.getSession().removeAttribute("user");
+		this.getViewParams().put("someMessage", "Hello, World (from TestAction)!!!");
 		
-		return "login";
+		return "test";
 	}
 
 }
