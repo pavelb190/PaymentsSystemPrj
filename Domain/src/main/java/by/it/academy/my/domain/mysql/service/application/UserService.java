@@ -7,11 +7,12 @@ import by.it.academy.my.dal.db.manager.DBConnectionManager;
 import by.it.academy.my.dal.db.manager.DatabaseManagerFactory;
 import by.it.academy.my.dal.db.util.jolbox.DatabaseConnectionManager;
 import by.it.academy.my.dal.exception.DalException;
-import by.it.academy.my.dao.application.UserDao;
+import by.it.academy.my.dao.UserDao;
 import by.it.academy.my.dao.application.db.mysql.UserDaoImpl;
+import by.it.academy.my.dao.db.AbstractBaseDao;
 import by.it.academy.my.dao.exception.DaoException;
 import by.it.academy.my.domain.service.exception.ServiceException;
-import by.it.academy.my.model.entity.application.User;
+import by.it.academy.my.model.entity.User;
 
 public class UserService {
 	
@@ -41,7 +42,7 @@ public class UserService {
 			
 			Connection conn = this.dbConnectionManager.getConnection();
 			
-			UserDao userDao = new UserDaoImpl(conn);
+			UserDao userDao = UserDaoImpl.getInstance().useConnection(conn);
 			
 			user = userDao.get(id);
 			

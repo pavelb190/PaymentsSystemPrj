@@ -5,22 +5,38 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import by.it.academy.my.dao.application.UserDao;
-import by.it.academy.my.dao.application.UserRoleDao;
-import by.it.academy.my.dao.db.AbstractDatabaseDaoImpl;
+import by.it.academy.my.dao.UserDao;
+import by.it.academy.my.dao.UserRoleDao;
+import by.it.academy.my.dao.db.AbstractBaseDao;
 import by.it.academy.my.dao.exception.DaoException;
-import by.it.academy.my.model.entity.application.User;
-import by.it.academy.my.model.entity.application.UserRole;
+import by.it.academy.my.model.entity.User;
+import by.it.academy.my.model.entity.UserRole;
 
-public class UserDaoImpl extends AbstractDatabaseDaoImpl<User, Long> implements UserDao {
+public class UserDaoImpl extends AbstractBaseDao<User, Long> implements UserDao {
 	
-	private UserRoleDao userRoleDao;
+	private static UserDaoImpl instance;
 	
-	public UserDaoImpl(Connection connection) {
+	private UserDaoImpl() {
 		
-		super(connection);
+		super();
 		
-		this.userRoleDao = new UserRoleDaoImpl(connection); 
+		// ...
+	}
+	
+	public static UserDaoImpl getInstance() {
+		
+		if (instance == null) {
+			
+			instance = new UserDaoImpl();
+		}
+		
+		return instance;
+	}
+	
+	@Override
+	public UserDaoImpl useConnection(Connection connection) {
+		
+		return (UserDaoImpl) super.useConnection(connection);
 	}
 	
 	public User get(Long id) throws DaoException {
@@ -54,7 +70,15 @@ public class UserDaoImpl extends AbstractDatabaseDaoImpl<User, Long> implements 
 					
 					user.setEmail(rs.getString("email"));
 					
-					UserRole userRole = this.userRoleDao.get(rs.getLong("role_id"));
+					// Get UserRole for this User ...
+					UserRole userRole =
+							
+							// Using UserRoleDao implement. ...
+							UserRoleDaoImpl
+								// (*for the same database-connection).
+								.getInstance().useConnection(conn)
+									// by his 'role_id'-field ...
+									.get(rs.getLong("role_id"));
 					
 					user.setUserRole(userRole);
 					
@@ -82,19 +106,6 @@ public class UserDaoImpl extends AbstractDatabaseDaoImpl<User, Long> implements 
 			}
 		}
 		
-		/*
-		try {
-			
-			conn.close();
-			
-		} catch (SQLException e) {
-			
-			e.printStackTrace();
-			
-			throw new DaoException(e.getMessage());
-		}
-		*/
-		
 		return user;
 	}
 
@@ -114,6 +125,12 @@ public class UserDaoImpl extends AbstractDatabaseDaoImpl<User, Long> implements 
 	}
 
 	public User getByLogin(String login) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public User getByLogin() {
 		// TODO Auto-generated method stub
 		return null;
 	}

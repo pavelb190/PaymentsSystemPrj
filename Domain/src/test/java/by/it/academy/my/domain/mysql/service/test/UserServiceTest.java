@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import by.it.academy.my.domain.mysql.service.application.UserService;
 import by.it.academy.my.domain.service.exception.ServiceException;
-import by.it.academy.my.model.entity.application.User;
+import by.it.academy.my.model.entity.User;
 
 public class UserServiceTest {
 	

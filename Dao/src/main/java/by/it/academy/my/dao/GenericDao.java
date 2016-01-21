@@ -9,6 +9,6 @@ public interface GenericDao<T extends Entity, PK extends Serializable> {
 	
 	public T get(PK id) throws DaoException;
 	public void add(T entity);
-	public void update(T entity);
+	public void update(T entity) throws DaoException;
 	public void delete(PK id);
 }

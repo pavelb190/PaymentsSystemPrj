@@ -4,18 +4,38 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.List;
 
-import by.it.academy.my.dao.application.UserRoleDao;
-import by.it.academy.my.dao.db.AbstractDatabaseDaoImpl;
+import by.it.academy.my.dao.UserRoleDao;
+import by.it.academy.my.dao.db.AbstractBaseDao;
 import by.it.academy.my.dao.exception.DaoException;
-import by.it.academy.my.model.entity.application.UserRole;
+import by.it.academy.my.model.entity.UserRole;
 
-public class UserRoleDaoImpl extends AbstractDatabaseDaoImpl<UserRole, Long> implements
-		UserRoleDao {
-
-	public UserRoleDaoImpl(Connection connection) {
+public class UserRoleDaoImpl extends AbstractBaseDao<UserRole, Long> implements UserRoleDao {
+	
+	private static UserRoleDaoImpl instance;
+	
+	private UserRoleDaoImpl() {
 		
-		super(connection);
+		super();
+		
+		// ...
+	}
+	
+	public static UserRoleDaoImpl getInstance() {
+		
+		if (instance == null) {
+			
+			instance = new UserRoleDaoImpl();
+		}
+		
+		return instance;
+	}
+	
+	@Override
+	public UserRoleDaoImpl useConnection(Connection connection) {
+		
+		return (UserRoleDaoImpl) super.useConnection(connection);
 	}
 	
 	@Override
@@ -87,6 +107,12 @@ public class UserRoleDaoImpl extends AbstractDatabaseDaoImpl<UserRole, Long> imp
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
 
+	}
+
+	@Override
+	public List<UserRole> getRolesAll() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

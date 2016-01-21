@@ -1,6 +1,5 @@
-package by.it.academy.my.model.entity.application;
+package by.it.academy.my.model.entity;
 
-import by.it.academy.my.model.entity.Entity;
 
 public class UserRole extends Entity {
 	
