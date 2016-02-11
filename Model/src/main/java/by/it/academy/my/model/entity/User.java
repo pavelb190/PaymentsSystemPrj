@@ -3,6 +3,11 @@ package by.it.academy.my.model.entity;
 
 public class User extends Entity {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private String firstName;
 	private String lastName;
 	

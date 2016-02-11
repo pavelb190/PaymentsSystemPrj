@@ -2,6 +2,7 @@ package by.it.academy.my.test;
 
 import static org.junit.Assert.assertNotNull;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import by.it.academy.my.dal.db.manager.DBConnectionManager;
@@ -15,6 +16,7 @@ import by.it.academy.my.model.entity.UserRole;
 
 public class UserRoleDaoTest {
 	
+	@Ignore
 	@Test
 	public void testGettingUserRoleById() throws DalException, DaoException {
 		
@@ -32,4 +34,5 @@ public class UserRoleDaoTest {
 		
 		assertNotNull( "UserRole with id '" + id + "' doesn't exist.", userRole );
 	}
+	
 }

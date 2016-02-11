@@ -67,6 +67,7 @@ public class MyTest {
 		assertNotNull( "[BoneCP] : DB Connection obtained.", getConnectionPool().getConnection() );
 	}
 	
+	@Ignore
 	@Test
 	public void testDBConnectionManagerInstantiating() throws DalException {
 		
@@ -76,4 +77,5 @@ public class MyTest {
 		
 		assertNotNull( "BoneCP-instance created successfully.", dbConnMngr );
 	}
+	
 }

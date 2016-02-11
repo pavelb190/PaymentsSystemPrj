@@ -4,6 +4,7 @@ import static org.junit.Assert.assertTrue;
 
 import java.util.List;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import by.it.academy.my.dal.db.manager.DBConnectionManager;
@@ -21,6 +22,7 @@ import by.it.academy.my.model.entity.UserRole;
 
 public class BankAccountDaoTest {
 	
+	@Ignore
 	@Test
 	public void testGettingBankAccountsForUser() throws DalException, DaoException {
 		
@@ -44,4 +46,5 @@ public class BankAccountDaoTest {
 		
 		assertTrue( "User with id '" + id + "' has no bank accounts.", userBankAccounts.size() > 0 );
 	}
+	
 }

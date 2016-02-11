@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-configuration PUBLIC
+	"-//Hibernate/Hibernate Configuration DTD//EN"
+	"http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
+
+<hibernate-configuration>
+	
+	<session-factory>
+	
+		<property name="hibernate.dialect">
+			org.hibernate.dialect.MySQLDialect
+		</property>
+		<property name="hibernate.connection.driver_class">
+			com.mysql.jdbc.Driver
+		</property>
+		<!--
+		<property name="hibernate.current_session_context_class">
+			thread
+		</property>
+		-->
+		<property name="hibernate.connection.url">
+			jdbc:mysql://localhost/DB_Payments
+		</property>
+		<property name="hibernate.connection.username">
+			root
+		</property>
+		<property name="hibernate.connection.password">
+			123
+		</property>
+		<property name="hibernate.show_sql">
+			true
+		</property>
+		
+		<!-- <mapping class="by.it.academy.my.model.entity.hib.UserRole" />-->
+		<mapping class="by.it.academy.my.model.entity.hib.User" />
+		
+		<mapping class="by.it.academy.my.model.entity.hib.Admin" />
+		<mapping class="by.it.academy.my.model.entity.hib.Client" />
+		
+		<mapping class="by.it.academy.my.model.entity.hib.BankAccount" />
+		<mapping class="by.it.academy.my.model.entity.hib.CreditCard" />
+		
+		<!-- #Test Entites:
+			
+			<mapping class="by.it.academy.my.model.entity.hib.test.User" />
+			<mapping class="by.it.academy.my.model.entity.hib.test.Address" />
+			<mapping class="by.it.academy.my.model.entity.hib.test.Order" />
+		-->
+		
+	</session-factory>
+	
+</hibernate-configuration>

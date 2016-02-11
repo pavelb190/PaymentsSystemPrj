@@ -5,6 +5,11 @@ import java.util.Set;
 
 public class BankAccount extends Entity {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private User user;
 	
 	private double balance;

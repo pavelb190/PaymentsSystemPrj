@@ -2,6 +2,7 @@ package by.it.academy.my.test;
 
 import static org.junit.Assert.assertNotNull;
 
+import org.junit.Ignore;
 import org.junit.Test;
 
 import by.it.academy.my.dal.db.manager.DBConnectionManager;
@@ -15,6 +16,7 @@ import by.it.academy.my.model.entity.User;
 
 public class UserDaoTest {
 	
+	@Ignore
 	@Test
 	public void testGettingUserById() throws DalException, DaoException {
 		
@@ -32,4 +34,5 @@ public class UserDaoTest {
 		
 		assertNotNull( "User with id '" + id + "' doesn't exist.", user );
 	}
+	
 }

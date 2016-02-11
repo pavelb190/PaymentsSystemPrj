@@ -32,4 +32,5 @@ public class DatabaseConnectionManagerTest {
 		
 		assertNotNull( "Couldn't get a database connection from the DatabaseConnectionManager.", connection );
 	}
+	
 }

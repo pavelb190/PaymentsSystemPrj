@@ -2,44 +2,52 @@ package by.it.academy.my.web.action.application;
 
 import java.util.HashMap;
 
-import by.it.academy.my.domain.mysql.service.application.UserService;
+import by.it.academy.my.domain.mysql.service.hibernate.application.UserDto;
+import by.it.academy.my.domain.mysql.service.hibernate.application.UserService;
 import by.it.academy.my.domain.service.exception.ServiceException;
-import by.it.academy.my.model.entity.User;
+import by.it.academy.my.model.entity.hib.Admin;
+import by.it.academy.my.model.entity.hib.Client;
+import by.it.academy.my.model.entity.hib.User;
 import by.it.academy.my.web.action.WebAction;
 import by.it.academy.my.web.action.exception.ActionException;
 
 public class LoginAction extends WebAction {
 	
-	UserService userService;
+	private UserService userService;
 	
 	public LoginAction() throws ActionException {
 		
-		try {
+		//try {
 			
 			this.userService = new UserService();
 			
+		/*
 		} catch (ServiceException e) {
 			
 			e.printStackTrace();
 			
 			throw new ActionException(e.getMessage());
 		}
+		*/
 	}
 	
 	@Override
 	protected String doAction() throws ActionException {
 		
-		final String userId = (String) getActionParam("userId");
+		final Long userId = (Long) getActionParam("userId");
 		final String password = (String) getActionParam("pswd");
 		
-		System.out.println("UserId: " + userId + ", password: " + password);
+		//System.out.println("UserId: " + userId + ", password: " + password);
 		
-		User user = null;
+		UserDto userDto = new UserDto(userId, password);
+		
+		User userLogged = null;
 		
 		try {
 			
-			user = userService.getUserById(Long.parseLong(userId));
+			userLogged = userService.userLogin(userDto);
 			
+			/*
 			if (user != null) {
 				
 				boolean userChecked = userService.checkUserPassword(user, password);
@@ -69,6 +77,7 @@ public class LoginAction extends WebAction {
 				
 				throw new ActionException("User with id '" + userId + "' not Found!");
 			}
+			*/
 			
 		} catch (ServiceException e) {
 			
@@ -77,7 +86,18 @@ public class LoginAction extends WebAction {
 			throw new ActionException(e.getMessage());
 		}
 		
-		return "index";
+		if (userLogged instanceof Client) {
+			
+			return "index";
+			
+		} else if (userLogged instanceof Admin) {
+			
+			return "admin";
+			
+		} else {
+			
+			return "default";
+		}
 	}
 
 }

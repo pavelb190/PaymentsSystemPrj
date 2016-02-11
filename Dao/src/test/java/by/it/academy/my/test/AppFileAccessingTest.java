@@ -35,4 +35,5 @@ public class AppFileAccessingTest {
 			throw new FileNotFoundException("Property file '" + propFileName + "' not found in the classpath!");
 		}
 	}
+	
 }
